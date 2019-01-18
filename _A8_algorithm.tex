@@ -1,0 +1,19 @@
+\begin{enumerate}
+\item \textbf{Set goal node:} Set the goal node as the first component of the predefined list of end nodes. 
+%2
+\item \textbf{Create the open list from start node:} Expand the start node and create an open list with all the child nodes of the start node. The open list sorts its members in a priority queue based on the cost. The start node is added to the closed list.
+%3
+\item \textbf{Select and expand the best node from open list:} The node with the lowest cost is selected from the nodes within the open list. The selected node is expanded, and the children of the selected node are added to the open list. The expanded node is then added to the closed list.
+%4
+\item \textbf{Repeat 3 until goal node is reached}
+%5
+\item \textbf{Construct shortest path to goal node}: After reaching the goal node, the shortest path to the goal is constructed from the closed list by retracing the parent nodes from the goal node to the start node.
+%6
+\item \textbf{Calculate and record total cost:} The total cost for the shortest path is calculated, and the path is recorded with the total cost in a list named \textit{path list}.
+%7
+\item \textbf{Set new goal}: The open and closed lists are cleared. The next component in the list of end nodes is selected as the goal node.
+%8
+\item \textbf{Repeat 2-7 for all components of the end nodes list}
+%9
+\item \textbf{Select the path with the lowest cost in the path list as the optimum path.}
+\end{enumerate}

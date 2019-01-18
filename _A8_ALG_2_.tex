@@ -1,0 +1,50 @@
+
+\textbf{Algorithm 1:} A* search algorithm
+
+\begin{algorithmic}[1]
+\label{al:1}
+% \Function{heuristic\_estimate}{$a,b$}
+%     \State $hCost := \sum_{n=a}^b D(n)*R_{best}(n) $
+%     \State \Return $hCost$
+% \EndFunction
+
+% \Function{gCost\_calc}{$p,c$}
+%     \State $C_{actual}(pc) := C_{ESS}(pc)+C_{GRID}(t)+C_{best}(p)$
+%     \State \Return $C_{actual}(pc)$
+% \EndFunction
+
+\Function{A*}{$start, goal$}
+\State $Closed\_Set = \{\}$ \Comment{Set of evaluated nodes}
+\State $Open\_Set = \{Start\}$ \Comment{Set of already discovered nodes which have not been evaluated. Initially,  the start node is discovered.}
+\State $Best\_Parent[Start] = \{ \}$ \Comment{It is the node from which the current node can be most effectively reached. At initialization it is empty because the start node has no parent node.}
+\State $F\_cost[Start] = G\_cost[Start] + H\_cost[Start]$ \Comment{$F\_cost$ is the combination of the actual cost of reaching a node from the start node \& the heuristic cost of reaching the goal node from the current node. $G\_cost$ is the actual cost \& $H\_cost$ is the heuristic cost of the current node. the Start node has a $G\_cost$ of $0$.}
+\While{$Open\_Set$ is not empty}
+    \State $Current\_Node = $ node in $Open\_Set$ with lowest $F\_cost$
+    \If{$Current\_Node$ == goal}
+      \State  \textbf{break} 
+    \EndIf
+    \For {Each child node of $Current\_Node$}
+        \If{Child node in $Closed\_Set$}
+            \State \textbf{continue}
+        \EndIf
+        \If{Child node in $Open\_Set$}
+            \If{$G\_cost[child]$ $\geq$ $G\_cost$ already in $Open\_Set$}
+                \State \textbf{continue}
+            \EndIf
+        \EndIf
+        \State $Best\_Parent[child] = Current\_Node$
+        \State $F\_cost[child] = G\_cost[child] + H\_cost[child]$
+        \State $Open\_Set.add(child)$ \Comment{Add child node to $Open\_Set$}
+
+    \EndFor
+    \State $Closed\_Set.add(Current\_Node)$ \Comment{Add $Current\_Node$ to $Closed\_Set$}
+    \State $Open\_Set.remove(Current\_Node)$ \Comment{Remove $Current\_Node$ From $Open\_Set$}
+\EndWhile
+\State $Best\_Path = \{ \}$ \Comment{$Best\_Path$ is the most efficient path to get to the goal node.}
+\While{$Best\_Parent[Current\_Node] != \{ \}$}
+    $Current\_Node = Best\_Parent[Current\_Node]$
+    $Best\_Path.add(Current\_Node)$ \Comment{Add $Current\_Node$ to $Best\_Path$}
+\EndWhile
+\State \Return $Best\_Path$
+\EndFunction
+\end{algorithmic}

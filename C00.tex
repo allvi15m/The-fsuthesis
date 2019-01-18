@@ -1,0 +1,15 @@
+The energy industry is rapidly approaching a significant penetration of distributed generation (DG) in the distribution system. This higher penetration of distributed energy resources (DERs) has introduced reverse power flow in the system. The traditional voltage regulation devices only consider unidirectional power flow and operate based on the consideration that the voltage down the line will decrease depending on the line impedance. But this assumption is not valid with distributed generation as they can change the voltage of a node by supplying or absorbing reactive power. The uncertainty of the distributed wind and solar renewable resources can also cause traditional voltage regulation devices to operate more than necessary \cite{int1}.
+
+With the rise of technology such as smart grid, advanced metering infrastructure (AMI) and phasor measurement units (PMUs), a lot more data regarding the system status is available. How to efficiently use this data to optimize the voltage control coordination is still a contemporary research topic. In most of the current literature, this problem is addressed as an optimum power flow problem or a mixed integer optimization problem \cite{int2}. But both these approaches usually propose methods which are very computationally intensive and time consuming. For example, in \cite{LR5,LR1,LR2,LR3}, researchers describe various methods to coordinate voltage control using the DG and traditional voltage regulation devices. But the control cycles in these methods are in the range of minutes to an hour \cite{LR4}. This makes them unfavorable for controlling the voltage in a distribution grids containing fast responding DGs.
+
+This chapter proposes a coordinated voltage control method that reduces the use of traditional voltage control devices and utilizes the reactive power generation capabilities of the DG inverters to regulate the distribution system voltage. The proposed algorithm enables cooperation between multiple DGs to control the system voltage. This ensures that the full potential of the DG inverters is utilized before using the traditional devices for voltage regulation. The proposed method also completes its control cycle within a second which makes it suitable for distribution grids containing fast changing DGs. The proposed method has been validated using a distribution feeder model based on a real feeder. A phasor model of the system with the control algorithm was simulated in MATLAB\textsuperscript{\textregistered} Simulink\textsuperscript{\textregistered} using the Simscape Power Systems\textsuperscript{TM} toolbox for validation.
+
+
+\section{Design of Control Algorithm}\label{sec:design}
+\input{C02_design.tex}
+
+\section{Test system}
+\input{C03_test_system.tex}
+
+\section{Validation and Results}\label{sec:val}
+\input{C04_val_res.tex}

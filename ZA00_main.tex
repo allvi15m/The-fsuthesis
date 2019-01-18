@@ -1,0 +1,96 @@
+
+%use mybib.bib for bibliography. bibtex is used for bibliography
+\documentclass[journal]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+%\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+%\usepackage[section]{placeins}
+%\usepackage{subcaption}
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{tabu}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{siunitx}
+\usepackage{siunitx}
+\usepackage{ wasysym }
+\usepackage[usenames, dvipsnames]{color}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{A Graph Search Based Optimal Control Technique for Enterprise Level Energy Storage Based on Forecasting of PV, Load and Real-Time price of Energy}
+
+% \author{ Alvi~Newaz,~\IEEEmembership{Student Member,~IEEE,}
+% Juan~Ospina,~\IEEEmembership{Student Member,~IEEE and}
+%      M.~Omar~Faruque,~\IEEEmembership{Senior Member,~IEEE}
+%         }% <-this % stops a space
+        
+\maketitle
+
+\begin{abstract}
+This paper proposes a novel energy storage management (ESM) solution designed to optimize the use of grid-connected distributed energy resources (DERs) based on forecasting of generation, load, and real-time energy prices. The proposed control strategy aims to control the operations of the energy storage (ES) so that the total cost of energy used to serve the local electrical load is minimized. The proposed solution uses the energy storage status and available data to generate a graph that is explored using the A* search algorithm with the objective of finding the optimum cost of energy. Seven-day offline test results are presented for two different scenarios. The first scenario compares the A* based ESM with two base test cases considering net metering. The other scenario compares the A* based ESM with the same base test cases considering different costs for buying power from the grid and selling power to the grid. Two-day real-time simulation results are also presented considering different costs for buying power from the grid and selling power to the grid. The pricing schemes used in the testing were obtained from the Pacific Gas and Electric (PG\&E) and the New York Independent System Operator (NYISO). The results show substantial cost savings over the compared manual schemes. %\textbf{MAYBE, ADD THE \% OF COST SAVINGS OR THE BEST ONES}
+\end{abstract}
+                                         
+\begin{IEEEkeywords}
+ A* Search Algorithm, Distributed Energy Resources, Energy Storage Management, Energy Storage System, Graph Search, Real-Time Pricing, Real-Time Simulation.
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+\input{01_intro.tex}
+
+\section{Problem formulation} \label{formulation}
+\input{02_SEC2.tex}
+
+\section{A* based energy management system} \label{A*}
+\input{03_SEC3.tex}
+
+\section{Test system} \label{sys}
+\input{04_SEC4.tex}
+
+\section{Offline simulation and results} \label{OFF}
+\input{05_SEC5.tex}
+
+\section{Real-time simulation and results} \label{RT}
+\input{06_real_time.tex}
+
+
+% \section{TEMP}
+% \input{_A8_ALG_2_.tex}
+% \section{Novelty of research} \label{Novelty}
+% \input{07_novelty.tex}
+
+\section{Conclusions}
+This paper proposed a novel ESMS aimed to determine the optimal cost of ES. The ESM scheme is designed to optimize the charging and discharging of grid-connected energy storage by formulating the problem as a graph search and solving the graph search using the A* search algorithm. The A* based ESM is tested using real data collected from the SUNGRIN project, NYISO, and PG\&E. It also considers both a net metering scenario and a different sell back price scenario where the buying price of energy is different from the selling price. The ESM shows a cost saving of 6.93\% to 43.48\% compared to the base test cases for the tested scenarios. The results show that the proposed method has the capability to adapt to various varying price profiles and system status and provides a solution that reduces cost significantly. The proposed method is also capable of finishing the computation relatively quickly. It responded within two seconds in the CHIL testing while using relatively inexpensive hardware specifications shown in table \ref{tab:PC}. The algorithm is also easily scalable. The SOC discretization and prediction horizon can be easily scaled to incorporate various needs. Finally, the ESM algorithm incorporates the well known and easily available A* graph search algorithm. This makes the algorithm easily deployable in a variety of hardware without the need of any proprietary software. Future research will focus on developing an ESM capable of controlling multiple ES and additional DERs taking into account system constraints.
+
+\bibliographystyle{IEEEtran}
+\bibliography{mybib.bib}
+
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+\end{document}

@@ -1,0 +1,119 @@
+% This is a "bare-bones" thesis template file.  For examples of how to
+% use a few more LaTeX features, look in the 'sample' folder.  Read
+% the User Guide for documentation of the 'fsuthesis' class features.
+
+\documentclass[11pt,expanded,copyright]{fsuthesis}
+
+% Additional packages may be loaded here.
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+%\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+%\usepackage[section]{placeins}
+%\usepackage{subcaption}
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{tabu}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{siunitx}
+\usepackage{siunitx}
+\usepackage{ wasysym }
+\usepackage[section]{placeins}
+\usepackage[usenames, dvipsnames]{color}
+
+
+
+
+% Do NOT use 'geometry' or 'setspace' packages! They will
+% mess up the spacing provided by 'fsuthesis'.
+
+\title{MANAGEMENT OF DISTRIBUTED ENERGY RESOURCES}
+\author{Alvi Newaz}
+\college{College of Engineering}
+\department{Department of Electrical and Computer Engineering} % Delete if no department
+\manuscripttype{Prospectus examination report}              % [Thesis, Dissertation, Treatise]
+\degree{Doctor of Philosophy}                 
+\degreeyear{2019}
+\defensedate{March 31, 2015}
+
+%\subject{My Topic}
+%\keywords{keyterm1; keyterm2; keyterm3; ...}
+
+\committeeperson{Omar Faruque}{Professor Directing Thesis}
+\committeeperson{Verda Boizaar}{University Representative}
+\committeeperson{Sastry Pamidi}{Committee Member}
+\committeeperson{Simon Y. Foo}{Committee Member}
+
+\clubpenalty=9999
+\widowpenalty=9999
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\makecommitteepage
+
+%\begin{dedication}
+%\end{dedication}
+
+%\begin{acknowledgments}
+%\end{acknowledgments}
+
+\tableofcontents
+%\listoftables
+%\listoffigures
+%\listofmusex
+
+%\begin{listofsymbols}
+%\end{listofsymbols}
+
+%\begin{listofabbrevs}
+%\end{listofabbrevs}
+
+\begin{abstract}
+This is my abstract.
+\end{abstract}
+
+\mainmatter
+
+\chapter{Graph search based energy management} \label{A8_cahp}
+\input{A00.tex}
+
+\chapter{Coordinated Voltage Control in Distribution
+Systems with Distributed Generations} \label{CVC}
+\input{C00.tex}
+
+
+
+
+
+%\input chapter1
+%\input chapter2
+%\input chapter3
+
+%\appendix
+%\input appendix1
+
+% You have your choice of bibliography sections, either
+% hand-crafted or BibTeX.
+
+% Or use the BibTeX bibliography/references section below.  View the
+% file 'myrefs.bib' to get a feel for what these entries may look
+% like.  See the document in the 'sample' folder for more citation and
+% BibTeX examples.
+
+\bibliographystyle{unsrt}
+\bibliography{A8,CVC}
+
+\begin{biosketch}
+This is my biography.
+\end{biosketch}
+
+\end{document}
