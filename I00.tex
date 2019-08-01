@@ -205,7 +205,7 @@ As the ADMS is an evolving technology, the ADMS architecture is defined differen
  \end{itemize}
 
 \subsection{DERMS (Distributed Energy Resource Management System)}
-As this report focuses on components of DERMS, this concept is explained in more detail. The conventional power grid had an unpredictable and varying load profile. To counter this, the traditional grid used the dispatchability of traditional power plants and spinning reserves to maintain reliable power flow. It is also clear from the discussions in chapter 1 that the integration of distributed generation resources in the distribution system is increasing rapidly. As variable DG integration increases in the grid, the unpredictability of the grid rises drastically. The traditional approach of keeping spinning reserves are not only expensive but also inefficient to deal with this modern varying grid. Storage technology can play a crucial role in decreasing the variability of the grid \cite{USD13}. With recent advances in energy storage, utilities are considering deploying energy storage rated from 2kWh to 50 MWh in the distribution level \cite{Cle12}. Medium to small scale energy storage deployed near the consumer end lets the utilities provide better voltage control, renewable integration and reduced distribution losses while providing them the means to absorb fluctuation in prices and load. Moreover, with real-time pricing, the consumer can optimize the use of their energy storage and minimize electricity cost by taking advantage of the fluctuating price \cite{BPR11,PMv13,ASB17}.
+As this report focuses on components of DERMS, this concept is explained in more detail. The conventional power grid had an unpredictable and varying load profile. To counter this, the traditional grid used the dispatchability of traditional power plants and spinning reserves to maintain reliable power flow. It is also clear from the discussions thus far that the integration of distributed generation resources in the distribution system is increasing rapidly. As variable DG integration increases in the grid, the unpredictability of the grid rises drastically. The traditional approach of keeping spinning reserves are not only expensive but also inefficient to deal with this modern varying grid. Storage technology can play a crucial role in decreasing the variability of the grid \cite{USD13}. With recent advances in energy storage, utilities are considering deploying energy storage rated from 2kWh to 50 MWh in the distribution level \cite{Cle12}. Medium to small scale energy storage deployed near the consumer end lets the utilities provide better voltage control, renewable integration and reduced distribution losses while providing them the means to absorb fluctuation in prices and load. Moreover, with real-time pricing, the consumer can optimize the use of their energy storage and minimize electricity cost by taking advantage of the fluctuating price \cite{BPR11,PMv13,ASB17}.
 Optimizing the use of energy resources can lead to a lower cost. However, grid voltage stability and constraints cannot be compromised to gain the optimal solution. Integration of DGs produce challenges for maintaining system voltage stability. Another major concern is the new complexities that arise in properly protecting the system. The traditional protection schemes are not adequate in maintaining optimal system protection. To manage these new DERs at the distribution level, the concept of DERMS (Distributed Energy Resource Management System) has been introduced. Fig. \ref{fig:DERMS_ARCH} shows functions of a DERMS system. 
 
 \begin{figure}[!h]
@@ -215,7 +215,26 @@ Optimizing the use of energy resources can lead to a lower cost. However, grid v
 \label{fig:DERMS_ARCH}
 \end{figure}
 
-The function of the DERMS is to help the utility to optimally control the DERs to increase grid stability and lower costs. It also must deal with the unique characteristics of faults caused in the distribution level by increased DG penetration. The problems the DERMS has to solve can be subdivided into three categories voltage regulation, energy management and protection. This report proposes novel solutions to tackle the voltage regulation and energy management issues.
+As seen in Fig. \ref{fig:DERMS_ARCH} the DERMS system achieves it's purpose by following certain pattern. These functionality are described below
+
+\begin{itemize}
+    \item Model and Optimize the network: This process uses the current system measurements and other additional available data to determine the current status of the system from a system model. After the system status is estimated the estimation is used in optimizing different aspects of the system. Some common aspects are VVO (volt var optimization), network switching and DER management. The purpose of the optimization is to ensure minimum resource use without violating any system constraints.
+    
+    \item Forecast: With the addition of energy storing devices and volatile fast changing generation proper forecasting of the system status has become an effective tool. The forecasts can provide an idea about the  future load, DG availability and price. These information in turn can be used to optimize the system not only based on current status but also the probable future. This adds a whole new dimension to optimizing DERs and the best approach to forecasting and optimization based on forecasts are still a topic requiring much research.
+    
+    \item Monitor: The addition of DERs into the grid has introduced many new possibilities in the grid. But this does not come without demerits. The introduction of inverters and reverse power flow means that more monitoring devices are required to effectively monitor the grid. To tackle these issues smart meters and PMUs (phasor measurement units) are being added to the distribution grid \cite{DPMU1}. But these devices are costly. To monitor the distribution grid using such devices is a vital task of DERMs. The most effective way to monitor the distribution grid using such devices is a topic of much interest.
+    
+    \item Feedback: The feedback part of the DERMs operation loop is mostly based on communication. After collecting the system status data the feedback is responsible for providing the it to the model and optimize portion of the DERMs loop. This process can be a combination of wired and wireless communication.
+\end{itemize}
+
+From the discussion thus far it can be concluded that the DERMs system is in place to help both the utility and consumer optimize the use of the new DERs being integrated in to the power system while maintaining system stability. The problems the DERMs faces can be divided into three main categories:
+\begin{enumerate}
+    \item Voltage control
+    \item Optimum energy management
+    \item Power system protection
+\end{enumerate}
+
+This research focuses mostly on the Voltage control and Optimum energy management aspects of DERMS. In the next chapter the state of the art research on the three categories mentioned are presented and the research gaps in the area are discussed.
 
 \section{Motivation}
 \subsection{Requirement for Coordinated Voltage Regulation with Increasing DER Penetration}
