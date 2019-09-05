@@ -120,11 +120,11 @@ The core functionality of the algorithm proposed is based on the voltage sensiti
 %6
 \item \textbf{Order the nodes:} In this step, the nodes capable of providing reactive power support are ordered according to their electrical distance from the selected affected node. The ordered list of nodes is saved in a list called \textit{Node\_list}
 %7
-\item \textbf{Apply the appropriate reactive power:} In this step, the first node in the \textit{Node\_list} is selected. If the node can supply the required reactive power determined by the sensitivity matrix the algorithm sets the node to provide the required amount of power and continues to \textbf{step 9}. Otherwise, the algorithm sets the node to deliver the maximum available reactive power and takes it out of the list of nodes capable of providing reactive power.
+\item \textbf{Apply the appropriate reactive power:} In this step, the first node in the \textit{Node\_list} is selected. If the node can supply the required reactive power determined by the sensitivity matrix, the algorithm sets the node to provide the required amount of power and continues to \textbf{step 9}. Otherwise, the algorithm sets the node to deliver the maximum available reactive power and takes it out of the list of nodes capable of providing reactive power.
 %8
 \item \textbf{Repeat steps 3 to 7}
 %9
-\item \textbf{Estimate new system status:} After deciding the change in node reactive powers the algorithm estimates the new voltage profile of the system using (\ref{eq.Q_V}). If all the nodes in the new estimated profile are within voltage limits, the algorithm continues to \textbf{step 10}. Otherwise, the algorithm updates the measured data collected from the system with the new estimates and goes back to  \textbf{step 1}.
+\item \textbf{Estimate new system status:} After deciding the change in node reactive powers, the algorithm estimates the new voltage profile of the system using (\ref{eq.Q_V}). If all the nodes in the new estimated profile are within voltage limits, the algorithm continues to \textbf{step 10}. Otherwise, the algorithm updates the measured data collected from the system with the new estimates and goes back to  \textbf{step 1}.
 
 %10
 \item \textbf{Request the devices at the nodes to apply calculated changes}

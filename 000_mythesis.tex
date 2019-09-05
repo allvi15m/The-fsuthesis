@@ -3,7 +3,7 @@
 % the User Guide for documentation of the 'fsuthesis' class features.
 
 \documentclass[11pt,expanded,copyright]{fsuthesis}
-
+%\documentclass[11pt,expanded,copyright]{article}
 % Additional packages may be loaded here.
 \usepackage{graphicx}
 \usepackage{cite}
@@ -34,7 +34,7 @@
 % Do NOT use 'geometry' or 'setspace' packages! They will
 % mess up the spacing provided by 'fsuthesis'.
 
-\title{MANAGEMENT OF DISTRIBUTED ENERGY RESOURCES}
+\title{MANAGEMENT OF DISTRIBUTED ENERGY RESOURCES USING GRAPH SEARCH BASED ENERGY MANAGEMENT AND COORDINATED VOLTAGE CONTROL}
 \author{Alvi Newaz}
 \college{College of Engineering}
 \department{Department of Electrical and Computer Engineering} % Delete if no department
@@ -78,9 +78,9 @@
 %\end{listofabbrevs}
 
 \begin{abstract}
-Distributed energy resources (DERs) is one of the fastest growing components in distribution systems. The growth of DER integration has also brought with it some new concerns. With the introduction of fast-changing DERs and reverse power flow voltage regulation is facing some issues. Also how to optimally use the available DERs with the presence of a real-time pricing scheme is also a topic of interest. This report presents the challenges associated with the two topics mentioned and provides novel solutions to tackle the issues.
+Distributed energy resources (DERs) is one of the fastest-growing components in distribution systems. The growth of DER integration has also brought with it some new concerns. With the introduction of fast-changing DERs and reverse power flow voltage regulation is facing some issues. Also, how to optimally use the available DERs with the presence of a real-time pricing scheme is a topic of interest. This report presents the challenges associated with the two topics mentioned and provides novel solutions to tackle the issues.
 
-With the integration of DERs into the grid, the traditional notion of unidirectional power flow is no longer valid. The concept that power is generated in one central location and then provided to the consumers through transmission and distribution networks is no longer valid. DERs make it possible to generate and store power near the source. Solar and wind are two of the most prominent DERs available in the distribution grid. However, they are non-dispatchable and fast-changing. This causes the traditional regulation devices to operate more than necessary. Moreover, the slow response time of traditional voltage regulation schemes is not suitable to cope with the fast-changing DERs. To combat this issue, this report presents a novel voltage regulation technique based on the concepts of electrical distance calculation and voltage sensitivity analysis.
+With the integration of DERs into the grid, the traditional notion of unidirectional power flow is no longer valid. The concept that power is generated in one central location and then provided to the consumers through transmission and distribution networks is no longer accurate. DERs make it possible to generate and store power near the source. Solar and wind are two of the most prominent DERs available in the distribution grid. However, they are non-dispatchable and fast-changing. This causes the traditional regulation devices to operate more than necessary. Moreover, the slow response time of traditional voltage regulation schemes is not suitable to cope with the fast-changing DERs. To combat this issue, this report presents a novel voltage regulation technique based on the concepts of electrical distance calculation and voltage sensitivity analysis.
 
 Another DER that is becoming prominent in the grid is distributed storage (DS). DS can be used to combat the non-dispatchable fast-changing nature of solar and wind energy resources. It also has the potential to reduce the cost for both the consumer and utility by storing power when it is cheap and supplying when power is costly. However, the optimization of DS with the other DERs present in the grid is still a contemporary research topic. This report presents a graph search based energy management method which takes into account the present status and future forecasts to optimally use available DERs.
 
@@ -97,12 +97,14 @@ This research report presents the current status of development of the voltage r
 \label{TH_LR}
 \input{LR00.tex}
 
+\chapter{Development of Graph Search Based Energy Management for Energy Storage} \label{A8_cahp}
+\input{A00.tex}
+
+
 \chapter{Coordinated Voltage Control in Distribution
 Systems with Distributed Generations} \label{CVC}
 \input{C00.tex}
 
-\chapter{Development of Graph Search Based Energy Management for Energy Storage} \label{A8_cahp}
-\input{A00.tex}
 
 
 \chapter{Conclusions and future work}
