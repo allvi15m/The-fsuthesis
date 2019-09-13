@@ -9,45 +9,57 @@ As mentioned in chapter \ref{TH_intro}, voltage regulation is one of the primary
     \item \textbf{Energy storage:} If there are energy storage in the system, their charging and discharging operations can be controlled to maintain system voltage.
 \end{itemize}
 
-Control methodologies which take into account all the components are a contemporary research topic, and they can be divided into two main categories. 
-\begin{enumerate}
-    \item Centralized control
-    \item Decentralized and distributed control
-\end{enumerate}
+Control methodologies which take into account all the components are still a topic of interest. Some of the recent research on the topic are stated below.
 
-\subsection{Centralized Control}
-In this control strategy, every component of the distribution system is controlled from a centralized controller. Proper implementation of these methods requires a robust communication network in the distribution system. The centralized control methods considered here focus on control algorithms that make use of the DG inverters to maintain global voltage. 
+% \subsection{Centralized Control}
+% In this control strategy, every component of the distribution system is controlled from a centralized controller. Proper implementation of these methods requires a robust communication network in the distribution system. The centralized control methods considered here focus on control algorithms that make use of the DG inverters to maintain global voltage. 
 
-An objective function to minimize active power loss in distribution network has been considered in \cite{CE_VC_1}. Reference \cite{CE_VC_2} focuses on reactive power control with an objective of minimizing voltage deviation at each bus according to a reference voltage. In \cite{CE_VC_3}, the distribution network has been divided into different subsections to reduce the optimization complexity. In \cite{CE_VC_4} tap operation and system losses in radial distribution network were minimized by coordinating OLTCs and SVCs (static VAR compensators). In \cite{CE_VC_5}, the day ahead prediction of DGs were used to aid in the regulation method. A real-time optimum control strategy with vehicle to grid interface is proposed in \cite{CE_VC_6}. Another control strategy utilizing energy storage systems and OLTCS is proposed in \cite{CE_VC_7}.
+An objective function to minimize active power loss in distribution network has been considered in \cite{CE_VC_1}. The researchers here use particle swarm optimization with historical data to plan the optimum power flow every 15 minutes. Although this algorithm is shown to plan and coordinate voltage control efficiently this algorithm requires historical data and a good prediction. Also the 15 minutes time interval might be too long to respond to voltage violations effectively. Researchers in \cite{CE_VC_2} focuses on reactive power control with an objective of minimizing voltage deviation at each bus according to a reference voltage. Here the researchers optimize the total system at fixed time intervals to minimize voltage deviation. This approach has similar drawbacks as \cite{CE_VC_1}. Using predictive data to optimize future status of the system may cause less voltage violations but the long and complex computation necessary for the method makes it unsuitable for quickly responding to voltage violations. 
+%In \cite{CE_VC_3}, the distribution network has been divided into different subsections to reduce the optimization complexity.
+In \cite{CE_VC_4} tap operation and system losses in radial distribution network were minimized by coordinating OLTCs and SVCs (static VAR compensators). In this approach the researchers relaxed the mixed integer nonlinear programming to a continuous non linear programming problem and solved the relaxed problem. The researchers here do not consider the  reactive power generation capabilities of the inverter interfaced DGs.
+In \cite{NLR_1}, researchers propose a model predictive control (MPC) based technique where they curtail the DG generation based on the distribution network operator requirements. The researchers assume Voltage magnitude and angle measurements are available to the algorithm. The researchers state that the MPC can be formulated as a quadratic program and solved using commercial solvers.
+In \cite{NLR_2} researchers propose a decentralized control scheme where they divide the distribution system into different control zones based on the position of voltage regulators. Each control zone is controlled independently of each other. The coordinated voltage regulation problem is formulated as a minimization problem in this case as well, and the optimum tap position of the voltage regulators are determined using big-bang crunch optimization. The researchers here consider a 15-minute control horizon and assume real-time measurement from the system is available.
+The researchers in \cite{NLR_3} propose a coordinated voltage control scheme based on data collected from the distribution system phasor measurement unit (DPMU). Here the researchers propose using a reduced system model by representing the nodes between DPMUs as equivalent $\pi$ or T  lines. Then a rule-based control methodology is used to coordinate voltage regulation.  
+Researchers in \cite{NLR_4} present another rule-based approach where they consider a DC microgrid, as well as traditional regulation, devised added to the grid. The researchers validated their algorithm using power hardware in the loop real-time simulation. 
+Researchers in \cite{NLR_5} use MPC based approach to control the voltage in a distribution grid by running two different MPCs in parallel in different time scale. The traditional regulation devices in conjunction with the available DG inverters in the system are controlled using a complex MPC formulation. In between the time it takes to solve the complex MPC problem the results of the previous solution is used to optimize the use of available fast responding DERs in the grid. This allows for a fast time scale control to optimize the system in between slower time scale control actions. The slow time scale control action is performed every 60 minutes and the fast time scale control action is performed every minute. The researchers assume system data is available from SCADA in this case. The method mentioned here uses mixed integer programming, and the convergence of the problem depends on the giving it a proper starting criterion. Which means if the initial conditions are far from the actual conduit of the grid the algorithm will not converge. This makes the approach vulnerable to failure from bad data.
+Researchers in \cite{NLR_6} use optimum power flow to solve the voltage regulation problem. They use a distributed control approach called fast distributed optimal reactive power flow algorithm. The algorithm uses local controllers or agents at DG nodes which operate based on information available from neighboring nodes. The formulation only deals with reactive power supplied by DG inverters and do not consider coordinating with traditional regulation devices. 
+In \cite{NLR_7}, a control strategy to coordinate the traditional regulation devices with grid-connected microgrid is proposed. The test system used in this study is a four bus system with three buses containing microgrids. The problem is formulated as an MPC and solved using a cooperative distributed MPC strategy. They show coordination between the connected microgrids, capacitor banks, and OLTC. The microgrids are able to maintain the required voltage at their point of common coupling (PCC).
+In \cite{NLR_8}, researchers propose a control strategy based on a hybrid approach where local controllers maintain voltage using volt-var control. Then a centralized controller further refines the local controls based on an MPC formulation. They assume system data of all the nodes are available. This allows faster local correction in seconds while the global centralized MPC refines the solution every tens of seconds.
+Researchers in \cite{NLR_9} propose a multi-objective pareto front optimization based technique to optimize the voltage regulation. They use genetic algorithm (GA) to determine a set of non dominated solutions offline. This step can take hours to perform. Then knowledge based local search (KBLS) is done on the reduced solution space achieved from the GA to get the solution based on current objective. If current objective is lowest cost of operation the KBLS looks for the solution with the least cost. if the current objective is fast voltage recovery then the KBLS will look for a solution that is within the regulation limits. This allows for creating reduced solution spaces offline and then the use of KBLS online to find the solution based on system operator needs. The researcher here show numerical simulation to verify the proposed method.
+In \cite{NLR_10} researchers propose a coordinated control scheme that take into account both fast changing and slow changing operations. The researchers here propose using model reduction of the distribution grid. Here they represent the distribution grid elements between regulation devices and VSC connected DGs into equivalent circuit models. Then the reduced model is used to verify the effectiveness of the optimization. The researchers here use a sensitivity analysis based technique to coordinate the system voltage.
 
-A centralized control strategy can provide the best performance possible, but it may not be the best solution for the future grid for the following reasons \cite{VC_1}:
-\begin{itemize}
-    \item They require significant investment in communication assets.
-    \item A large number of small scale devices need to be controlled.
-    \item There is an increased amount of uncertainty due to faults, electric vehicles, storage units, dynamic loads, variable DGs, restoration, reconfiguration etc.
-    \item Increased computation complexity due to a large number of variables.
-    \item Does not incorporate plug and play capabilities.
-\end{itemize}
 
-\subsection{Decentralized and Distributed Control}
-Decentralized and distributed control schemes do not have a centralized hub where the control actions are calculated. They consist of multiple controllers which communicate with each other to maintain system stability \cite{DB_VC_1}.  Different decentralized and distributed control schemes are briefly discussed below.
 
-\begin{itemize}
-    \item \textbf{Distributed optimization method:} The optimum voltage control problem can be formulated as a non-convex optimal power flow problem. In these methods, some form of convex relaxation is applied to make the problem convex. Then the centralized convex problem is decomposed to and solved by distributed algorithms \cite{Kyrue}. References  \cite{KUt17,BAR16,BAR161,WZh16} are some of the recent literature using various distributed optimization methods to solve the voltage regulation problem.
-    \item \textbf{Decentralized Methods:} In the decentralized method, each area solves its own voltage regulation problem and the solution only affects that area. Both heuristic methods and optimization methods may be used to solve the problems \cite{Kyrue}. \cite{MChss,MBa,XZh16,MNa16,LRe15,EDass} are some recent publications on this method.
-    \item \textbf{Distributed Cooperation:} In this scheme, the secondary centralized control interacts with autonomous primary control. This results in a secondary control scheme that substitutes local control \cite{Kyrue}. References \cite{ABi13,FGu15,SAn13,QSh14} are some modern research on this topic.
-    \item \textbf{Distributed Adaptive Control:} These methods monitor their performance and self-tunes its input value rather than maintaining a reference value. In \cite{ABi14} the adaptive secondary voltage control is formulated as a tracking synchronization problem. Neural networks were used to model the non-linear inverter dynamics \cite{Kyrue}.
-    \item \textbf{Distributed Model Predictive Control:} In this method, the controllers predict their state over a finite time-horizon by gathering information from their neighbors and using the model of the system. In \cite{GLoss} model predictive control is used to minimize the voltage deviation until all the voltages synchronize to a reference value \cite{Kyrue}.
-    \item \textbf{Decision Making:} In this method, when there is a conflict between multiple objectives a decision maker is used to identify the solution \cite{Kyrue}. Expert-based decision makers are incorporated in smart agents in \cite{HEF12, HEF13}. The agents communicate using a contract net protocol option. The controllers in \cite{MEC13} exchange their constraints to solve a dynamic optimal dispatch problem.
-    \item \textbf{Hybrid Methods:} In this case, the distributed control takes over when the local control fails to maintain the system voltage \cite{Kyrue}. Reference \cite{GMo13,YWa16} uses consensus algorithms for distributed control after local control fails. Reference \cite{DRe13} does active curtailment of DG units. In \cite{BAR13} the distributed control requests reactive power compensation from neighboring zones if voltage imbalance cannot be mitigated.
-\end{itemize}
-An overview of the advantages and disadvantages of the methods mentioned is given in Fig. \ref{fig:DIS_CVC}.
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.85\linewidth]{figs/DIS_CVC.png}
-\caption[Evaluation of mentioned methods]{Evaluation of mentioned methods \cite{Kyrue}}
-\label{fig:DIS_CVC}
-\end{figure}
+%IN \cite{CE_VC_5}, the day ahead prediction of DGs were used to aid in the regulation method. Another control strategy utilizing energy storage systems and OLTCS is proposed in \cite{CE_VC_7}.
+
+% % A centralized control strategy can provide the best performance possible, but it may not be the best solution for the future grid for the following reasons \cite{VC_1}:
+% % \begin{itemize}
+% %     \item They require significant investment in communication assets.
+% %     \item A large number of small scale devices need to be controlled.
+% %     \item There is an increased amount of uncertainty due to faults, electric vehicles, storage units, dynamic loads, variable DGs, restoration, reconfiguration etc.
+% %     \item Increased computation complexity due to a large number of variables.
+% %     \item Does not incorporate plug and play capabilities.
+% % \end{itemize}
+
+% \subsection{Decentralized and Distributed Control}
+% Decentralized and distributed control schemes do not have a centralized hub where the control actions are calculated. They consist of multiple controllers which communicate with each other to maintain system stability \cite{DB_VC_1}.  Different decentralized and distributed control schemes are briefly discussed below.
+
+% \begin{itemize}
+%     \item \textbf{Distributed optimization method:} The optimum voltage control problem can be formulated as a non-convex optimal power flow problem. In these methods, some form of convex relaxation is applied to make the problem convex. Then the centralized convex problem is decomposed to and solved by distributed algorithms \cite{Kyrue}. References  \cite{KUt17,BAR16,BAR161,WZh16} are some of the recent literature using various distributed optimization methods to solve the voltage regulation problem.
+%     \item \textbf{Decentralized Methods:} In the decentralized method, each area solves its own voltage regulation problem and the solution only affects that area. Both heuristic methods and optimization methods may be used to solve the problems \cite{Kyrue}. \cite{MChss,MBa,XZh16,MNa16,LRe15,EDass} are some recent publications on this method.
+%     \item \textbf{Distributed Cooperation:} In this scheme, the secondary centralized control interacts with autonomous primary control. This results in a secondary control scheme that substitutes local control \cite{Kyrue}. References \cite{ABi13,FGu15,SAn13,QSh14} are some modern research on this topic.
+%     \item \textbf{Distributed Adaptive Control:} These methods monitor their performance and self-tunes its input value rather than maintaining a reference value. In \cite{ABi14} the adaptive secondary voltage control is formulated as a tracking synchronization problem. Neural networks were used to model the non-linear inverter dynamics \cite{Kyrue}.
+%     \item \textbf{Distributed Model Predictive Control:} In this method, the controllers predict their state over a finite time-horizon by gathering information from their neighbors and using the model of the system. In \cite{GLoss} model predictive control is used to minimize the voltage deviation until all the voltages synchronize to a reference value \cite{Kyrue}.
+%     \item \textbf{Decision Making:} In this method, when there is a conflict between multiple objectives a decision maker is used to identify the solution \cite{Kyrue}. Expert-based decision makers are incorporated in smart agents in \cite{HEF12, HEF13}. The agents communicate using a contract net protocol option. The controllers in \cite{MEC13} exchange their constraints to solve a dynamic optimal dispatch problem.
+%     \item \textbf{Hybrid Methods:} In this case, the distributed control takes over when the local control fails to maintain the system voltage \cite{Kyrue}. Reference \cite{GMo13,YWa16} uses consensus algorithms for distributed control after local control fails. Reference \cite{DRe13} does active curtailment of DG units. In \cite{BAR13} the distributed control requests reactive power compensation from neighboring zones if voltage imbalance cannot be mitigated.
+% \end{itemize}
+% An overview of the advantages and disadvantages of the methods mentioned is given in Fig. \ref{fig:DIS_CVC}.
+% \begin{figure}[!h]
+% \centering
+% \includegraphics[width=0.85\linewidth]{figs/DIS_CVC.png}
+% \caption[Evaluation of mentioned methods]{Evaluation of mentioned methods \cite{Kyrue}}
+% \label{fig:DIS_CVC}
+% \end{figure}
 
 \section{Energy Management}
 With real-time pricing and variability of DGs, energy management can play a vital role to decrease the cost of energy. The goal of a modern energy management system would be to optimize the use of energy storage not only based on the current state of the system but also based on the probable future states. The energy management algorithms which deal with both variable DGs and real-time pricing can be divided into two main categories, offline and real-time algorithms \cite{Wen17}. 
@@ -74,10 +86,6 @@ To solve the problem of reliance on perfect prediction some offline algorithms, 
 \cite{Has17} uses mixed integer linear programming formulation of the day ahead scheduling of microgrids. The uncertainties are taken into account by calculating multiple solutions based on different predicted seniors. 
 The authors in \cite{Yue16} formulate the optimization problem based on the worst case scenario. The solution method considers the most cost from the grid and the least benefits from using local DG resources. The uncertainty of the grid is expressed as set points in Taguchi’s orthogonal array. Then search strategy based on Taguchi’s orthogonal array is used to find the best possible solution cases. Using the worst case to formulate the problem makes the solution robust for all situations. Although this method provides a robust solution always taking into account, the worst scenario makes the solution suboptimal.
 \cite{FFa15} uses the mixed inter programming formulation for optimizing the DERs. The uncertainties of the predicted data are taken into account by generating different schedules with risk-averse and risk-neutral options. The different scenarios are stochastically generated based on the risk-based prediction data available. The approach uses stochastic programming to generate the uncertainties as different scenarios. The number of scenarios required to adequately capture the uncertainties usually end up being very large. 
-
-
-
-
 
 \subsection{Real-Time Algorithms}
 There have been advances recently in designing real-time algorithms that optimize the long-term cost of the energy management system, taking into account the intermittent nature of the loads and DGs in the grid. \cite{RPa13} Proposes a real-time management process based on a rolling horizon strategy. The algorithm proposed solves a mixed integer linear programming problem in each interval to generate setpoints for the resources available. The researchers test the algorithm using a microgrid model consisting of a PV panel, diesel generator, wind turbine and energy storage system. Fig. \ref{fig:RT_1} shows a block diagram of the proposed method. As it can be seen from the diagram, the method takes into account historical data, current measurement and weather forecast in the optimization process. The system discussed has to solve a mixed integer linear program on every time interval. This process is computationally intensive and becomes exponentially more complex with the addition of more energy resources.
@@ -115,11 +123,20 @@ The drawbacks of these methods are that most of them do not take into account th
 \section{Research Gap}
 From the discussion thus far, it is evident that there are still many research opportunities in the field of coordinated voltage control and real-time energy management of distribution grids containing DERs. Some of the research gaps in the literature are:
 
+\subsection{Coordinated voltage control research gap}
+The problem of coordinating the traditional regulation devices with the grid-connected DERs to regulate distribution system voltage is still being actively researched. There are novel solutions proposed, but they suffer from one or more of the limitations discussed below:
 \begin{itemize}
-    \item Coordinated voltage control research gap: The available solutions use the traditional regulation devices to regulate voltage. They use the available inverter interfaced DGs mostly as passive devices. Some of them use local volt-var optimization to maintain the voltage at the local node. But they do not globally coordinate the reactive power generation capabilities of the inverter interfaced DERs with the traditional regulation devices to optimal use of the available regulation potential. The global controls discussed in the literature are computationally intensive. There is also a lack of control schemes that optimizes the use of all available regulation devices and the DGs to tackle voltage violation.
-    
-    \item Real-time energy management research gap: With the increasing amount of variable DGs being added to the grid, it is becoming very difficult to have accurate long term prediction of grid status. The presently available solutions either use present grid status to do real-time control or use day ahead scheduling or use a mix of both to do energy management. There is still the need for an energy management scheme that can optimize system status in real-time with a continuously updating forecast. 
+    \item They consider that the voltage angle, magnitude, and real \& reactive power from all the nodes are available.
+    \item They simplify the system based on the location of measurement devices which may lead to voltage violation inside the simplified sections.
+    \item They only consider DERs or traditional voltage regulation devices to control the system voltage. Which loses the potential benefit of coordinating between DERs and traditional regulation devices.
+    \item Some of the proposed solutions takes tens of seconds to minutes to determine the control action. This might not be fast enough response in systems with fast-changing DGs.
 \end{itemize}
+
+\subsection{Energy management research gap}
+
+    
+%     \item Real-time energy management research gap: With the increasing amount of variable DGs being added to the grid, it is becoming very difficult to have accurate long term prediction of grid status. The presently available solutions either use present grid status to do real-time control or use day ahead scheduling or use a mix of both to do energy management. There is still the need for an energy management scheme that can optimize system status in real-time with a continuously updating forecast. 
+% \end{itemize}
 
 \section{Contribution}
 The efforts invested in the dissertation work at hand mainly aim towards the following:
